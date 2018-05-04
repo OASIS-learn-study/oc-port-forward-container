@@ -28,3 +28,6 @@ RUN curl -s -L https://mirror.openshift.com/pub/openshift-v3/clients/$OC_VERSION
 COPY oc.sh /opt/oc/
 
 CMD ["sh", "-c", "/opt/oc/oc.sh"]
+
+# NB: It's really 25564 and *NOT* 25565!
+EXPOSE 25564
