@@ -4,7 +4,7 @@
 
     docker build . -t oc-port-forward-container
 
-    docker run --rm -e "OC_LOGIN_TOKEN=..." -e "OC_PORT_FORWARD_POD_NAME_PREFIX=..." -p 25565:25564 oc-port-forward-container
+    docker run --rm -e "OC_LOGIN=..." -e "OC_PORT_FORWARD_POD_NAME_PREFIX=..." -p 25565:25564 oc-port-forward-container
 
     docker run --rm -it oc-port-forward-container bash
 
