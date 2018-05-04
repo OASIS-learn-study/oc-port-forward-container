@@ -23,4 +23,6 @@ RUN curl -s -L https://mirror.openshift.com/pub/openshift-v3/clients/$OC_VERSION
     rm /tmp/oc.tar.gz && \
     /opt/oc/oc version
 
-CMD ["sh", "-c", "/opt/oc/oc login $OC_LOGIN_TOKEN; /opt/oc/oc port-forward $(/opt/oc/oc get pods --show-all=false -o name | grep $OC_PORT_FORWARD_POD_NAME_PREFIX | cut -c5-) 25565"]
+COPY oc.sh /opt/oc/
+
+CMD ["sh", "-c", "/opt/oc/oc.sh"]
