@@ -9,6 +9,13 @@
     docker run --rm -it oc-port-forward-container bash
 
 
+## Tips
+
+Because the pod name which is being port forwarded into will change on pod restarts,
+you'll want to set up a liveness probe in your container platform (OpenShift, Kubernetes, Docker)
+to restart this container if `./livenessProbe.sh` (based on `nmap`) returns 1 instead of 0.
+
+
 ## Implementation
 
 We run `oc port-forward` inside this container.  It listens (only) on interface	`localhost` (`127.0.0.1` / `[::1]`).
@@ -16,6 +23,9 @@ We also use `socat` in this container to forward port 25564 on the container's i
 to the port 25565 on interface `localhost` (`127.0.0.1` / `[::1]`) of the container.
 
 We then `-p` map port 25565 on the host to port 25564 of the container - which internally gets forwarded to port 25565.
+
+The `nmap` used in `./livenessProbe.sh` actually speaks the Minecraft protocol (its output e.g. reveals how many player are online).
+Using this is more reliable than just checking if port 25564 responds to TCP or not.
 
 Makes sense? ;-)
 
