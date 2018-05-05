@@ -1,0 +1,4 @@
+
+- [ ] socat keepalive?
+
+- [ ] socat -T ?
