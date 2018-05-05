@@ -3,7 +3,7 @@ MAINTAINER Michael Vorburger <vorburger@redhat.com>
 
 ENV OC_VERSION 3.10.0-0.32.0
 
-RUN yum update -y; yum install -y socat && yum clean all
+RUN yum update -y; yum install -y socat nmap && yum clean all
 # net-tools: ifconfig
 # iproute: ip addr show
 
