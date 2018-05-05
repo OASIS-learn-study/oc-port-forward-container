@@ -25,7 +25,7 @@ RUN curl -s -L https://mirror.openshift.com/pub/openshift-v3/clients/$OC_VERSION
     rm /tmp/oc.tar.gz && \
     /opt/oc/oc version
 
-COPY oc.sh /opt/oc/
+COPY *.sh /opt/oc/
 
 CMD ["sh", "-c", "/opt/oc/oc.sh"]
 
