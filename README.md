@@ -15,6 +15,18 @@ Because the pod name which is being port forwarded into will change on pod resta
 you'll want to set up a liveness probe in your container platform (OpenShift, Kubernetes, Docker)
 to restart this container if `./livenessProbe.sh` (based on `nmap`) returns 1 instead of 0.
 
+## Login
+
+The `OC_LOGIN` (above) should not be a regular user's (your) Login token, [because those expire](https://github.com/OASIS-learn-study/oc-port-forward-container/issues/1).  Use a [Service Account](https://docs.openshift.org/latest/dev_guide/service_accounts.html) instead:
+
+    oc create serviceaccount oc-port-forward-container
+    oc get clusterrole
+    oc policy add-role-to-user view -z oc-port-forward-container
+    oc policy add-role-to-user admin -z oc-port-forward-container
+    oc describe sa oc-port-forward-container
+    oc describe secret oc-port-forward-container-token-...
+
+The use of the `admin` role is because [there doesn't seem to be a port-forward role](https://stackoverflow.com/questions/50768976/what-is-the-name-of-the-role-that-allows-one-to-use-oc-kubectl-port-forward)?!
 
 ## Implementation
 
