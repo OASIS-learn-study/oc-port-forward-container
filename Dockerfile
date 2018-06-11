@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER Michael Vorburger <vorburger@redhat.com>
 
-ENV OC_VERSION 3.10.0-0.32.0
+ENV OC_VERSION 3.10.0-0.63.0
 
 RUN yum update -y; yum install -y socat nmap && yum clean all
 # net-tools: ifconfig
