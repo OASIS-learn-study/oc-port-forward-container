@@ -29,5 +29,4 @@ COPY *.sh /opt/oc/
 
 CMD ["sh", "-c", "/opt/oc/oc.sh"]
 
-# NB: It's really 25564 and *NOT* 25565!
-EXPOSE 25564
+EXPOSE 25565
